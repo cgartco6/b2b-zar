@@ -1,0 +1,62 @@
+{
+  "name": "b2b-zar-marketplace",
+  "version": "1.0.0",
+  "description": "South Africa's Premier B2B E-commerce Platform - Optimized for AfriHost",
+  "main": "src/backend/server.js",
+  "scripts": {
+    "start": "node src/backend/server.js",
+    "dev": "nodemon src/backend/server.js",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "mkdir -p public && cp -r src/frontend/* public/ && npm run optimize:assets",
+    "build:backend": "babel src/backend --out-dir dist/backend --copy-files",
+    "optimize:assets": "find public -name '*.js' -exec terser {} -o {} \\; && find public -name '*.css' -exec cleancss {} -o {} \\;",
+    "setup": "chmod +x deploy/afrihost-setup.sh && ./deploy/afrihost-setup.sh",
+    "backup": "./scripts/backup-db.sh",
+    "cleanup": "./scripts/cleanup-logs.sh",
+    "optimize": "./scripts/optimize-images.sh",
+    "health": "node scripts/health-check.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^6.10.0",
+    "express-validator": "^7.0.1",
+    "multer": "^1.4.5",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.3.1",
+    "axios": "^1.5.0",
+    "node-cron": "^3.0.2",
+    "uuid": "^9.0.0",
+    "moment": "^2.29.4",
+    "lodash": "^4.17.21",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "terser": "^5.19.2",
+    "clean-css-cli": "^5.6.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/b2b-zar-marketplace.git"
+  },
+  "keywords": [
+    "b2b",
+    "ecommerce",
+    "south-africa",
+    "marketplace",
+    "bbbee",
+    "afrihost"
+  ],
+  "author": "B2B ZAR Marketplace Team",
+  "license": "MIT"
+}
