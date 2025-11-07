@@ -1,0 +1,26 @@
+name: Backup Database
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Setup MySQL client
+      run: sudo apt-get install -y mysql-client
+    
+    - name: Backup database
+      run: |
+        mysqldump -h ${{ secrets.DB_HOST }} -u ${{ secrets.DB_USERNAME }} -p${{ secrets.DB_PASSWORD }} ${{ secrets.DB_NAME }} > backup.sql
+        gzip backup.sql
+    
+    - name: Upload backup to GitHub artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: database-backup-$(date +%Y%m%d)
+        path: backup.sql.gz
+        retention-days: 7
