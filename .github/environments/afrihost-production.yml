@@ -1,0 +1,25 @@
+name: afrihost-production
+url: https://your-domain.co.za
+
+protection_rules:
+  - required_reviewers:
+      count: 1
+  - required_deployments: true
+
+secrets:
+  DOMAIN_NAME: ${{ secrets.DOMAIN_NAME }}
+  AFRIHOST_FTP_SERVER: ${{ secrets.AFRIHOST_FTP_SERVER }}
+  AFRIHOST_FTP_USERNAME: ${{ secrets.AFRIHOST_FTP_USERNAME }}
+  AFRIHOST_FTP_PASSWORD: ${{ secrets.AFRIHOST_FTP_PASSWORD }}
+  AFRIHOST_SSH_HOST: ${{ secrets.AFRIHOST_SSH_HOST }}
+  AFRIHOST_SSH_USERNAME: ${{ secrets.AFRIHOST_SSH_USERNAME }}
+  AFRIHOST_SSH_KEY: ${{ secrets.AFRIHOST_SSH_KEY }}
+  DB_HOST: ${{ secrets.DB_HOST }}
+  DB_NAME: ${{ secrets.DB_NAME }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+  EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+  EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+  EMAIL_USER: ${{ secrets.EMAIL_USER }}
+  EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
